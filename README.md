@@ -2,30 +2,46 @@
 
 ![Project Preview](./public/preview-screenshot.png)
 
-PDFToolkit is a suite of high-performance PDF utilities built to solve the privacy issues of traditional online editors. Most tools require you to upload your files to a remote server for processing; **PDFToolkit does the opposite**.
-
-Using client-side JavaScript, it manipulates your documents directly in your browser. Your files never leave your device, ensuring total privacy and near-instant processing speeds.
+PDFToolkit is a suite of high-performance PDF utilities that processes all files **on the client side**. Your files never leave your device, ensuring total privacy and near-instant processing speeds.
 
 **Live Demo:** [https://xyz.com](https://xyz.com)
 
 ---
 
-## What It Does
+## Tools Included
 
-- **Local Processing**  
-  By leveraging `pdf-lib` and `PDF.js`, the app reads and writes PDF data directly in the browser's memory. This is ideal for sensitive documents like contracts, bank statements, or IDs.
+- **Merge PDF** `call_split arrow_outward`  
+  Combine PDFs in the order you want easily.
 
-- **Merge & Split**  
-  Combine multiple PDFs into one organized file, or extract specific pages from a large document into a new one.
+- **Split PDF** `description arrow_outward`  
+  Separate pages into independent files.
 
-- **Visual Organization**  
-  A visual workspace allows you to drag and drop pages to reorder them, rotate incorrectly scanned pages, or delete unwanted pages—no page numbers required.
+- **PDF to Word** `article arrow_outward`  
+  Convert PDF to Word with accuracy.
 
-- **Security**  
-  Add password encryption to protect your files or remove restrictions from existing PDFs. All operations happen locally, so passwords are never transmitted.
+- **Word to PDF** `edit_document arrow_outward`  
+  Convert DOCX files to PDF format.
 
-- **Image Conversion**  
-  Batch-convert JPG or PNG images into a single, high-quality PDF while preserving the original resolution.
+- **Edit PDF** `image arrow_outward`  
+  Add text, images, and annotations.
+
+- **PDF to JPG** `crop arrow_outward`  
+  Extract images or convert pages to JPG.
+
+- **Crop PDF** `collections arrow_outward`  
+  Crop PDF pages to a specific size.
+
+- **JPG to PDF** `ink_pen arrow_outward`  
+  Convert images to PDF in seconds.
+
+- **Sign PDF** `branding_watermark arrow_outward`  
+  Sign documents and request signatures.
+
+- **Watermark** `rotate_right arrow_outward`  
+  Stamp images or text over PDFs.
+
+- **Rotate PDF** `rotate_right arrow_outward`  
+  Rotate multiple documents at once.
 
 ---
 
@@ -33,10 +49,10 @@ Using client-side JavaScript, it manipulates your documents directly in your bro
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-- **Framework:** Next.js 14+ (App Router)
-- **PDF Engine:** `pdf-lib` (modification) and `PDF.js` (rendering)
-- **Styling:** Tailwind CSS
-- **Interactions:** `dnd-kit` for drag-and-drop page reordering
+- **Framework:** Next.js 14+ (App Router)  
+- **PDF Engine:** `pdf-lib` (modification) and `PDF.js` (rendering)  
+- **Styling:** Tailwind CSS  
+- **Interactions:** `dnd-kit` for drag-and-drop page reordering  
 - **Typography:** [Geist](https://vercel.com/font) via `next/font`
 
 ---
@@ -48,6 +64,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 1. **Clone the repository**
    ```bash
    git clone https://github.com/Zintl-e/pdftoolkit.git
+
    ```
 
 2. **Navigate to the project folder**
@@ -102,8 +119,6 @@ npm run start
 ## Privacy & Security
 
 - **Zero Uploads:** Files are read into temporary browser blobs and cleared when the tab is closed.
-- **No Tracking:** No server-side logs, document metadata tracking, or third-party analytics.
-- **Offline Mode:** Once the site is loaded, you can disconnect from the internet and continue using all tools.
 
 ---
 
