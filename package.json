@@ -19,7 +19,7 @@
     "@use-gesture/react": "^10.3.1",
     "crypto-js": "^4.2.0",
     "docx": "^9.5.1",
-    "mammoth": "^1.11.0"
+    "mammoth": "^1.11.0",
     "fabric": "^6.9.1",
     "file-saver": "^2.0.5",
     "fontkit": "^2.0.4",
