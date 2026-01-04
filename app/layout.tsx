@@ -180,9 +180,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span className="text-md font-bold">PDF Tools</span>
               </div>
               <div className="flex flex-wrap justify-center gap-5 text-xs font-medium text-[#757575]">
-                <Link href="#" className="hover:text-black dark:hover:text-white">Privacy</Link>
-                <Link href="#" className="hover:text-black dark:hover:text-white">Terms</Link>
-                <Link href="#" className="hover:text-black dark:hover:text-white">Contact</Link>
+               <p>Made by Zintle</p>
               </div>
               <div className="text-[#757575] text-[11px]">
                 © {new Date().getFullYear()} PDF Tools.
