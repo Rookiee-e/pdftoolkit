@@ -3,37 +3,36 @@
 import './globals.css';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { Mail } from "lucide-react"
+import { Mail } from "lucide-react";
 
-export default function RootLayout({ children }: { children: React.ReactNode }){
-   
-  const [darkMode, setDarkMode] = useState(() => {
-    if (typeof window === "undefined") return false;
-  
-    const theme = localStorage.getItem("theme");
-    if (theme) return theme === "dark";
-  
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
-  });
-  
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+
+  // Only one source of truth
+  const [darkMode, setDarkMode] = useState(false);
+
+  // On mount, initialize theme from localStorage or system preference
+  useEffect(() => {
+    const theme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (theme === 'dark' || (!theme && prefersDark)) {
+      setDarkMode(true);
+      document.documentElement.classList.add('dark');
+    } else {
+      setDarkMode(false);
+      document.documentElement.classList.remove('dark');
+    }
+  }, []);
+
+  // Update HTML class and localStorage when toggling
   useEffect(() => {
     const root = document.documentElement;
-  
-    if (darkMode) {
-      root.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      root.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [darkMode]);
-
-  useEffect(() => {
-    const root = window.document.documentElement;
     if (darkMode) {
       root.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     } else {
       root.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
   }, [darkMode]);
 
@@ -45,9 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }){
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
       </head>
-      {/* REMOVED transition-colors duration-200 to stop jitter */}
       <body className="bg-[#f7f7f7] dark:bg-[#191919] text-[#141414] dark:text-white min-h-screen flex flex-col text-[14px]">
-
         <header className="sticky top-0 z-50 w-full bg-white/80 dark:bg-[#191919]/80 backdrop-blur-md border-b border-[#f2f2f2] dark:border-neutral-800">
           <div className="max-w-[1024px] mx-auto px-4 sm:px-5">
             <div className="flex items-center justify-between h-12 gap-3">
@@ -59,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }){
               </Link>
 
               <div className="flex items-center gap-3 shrink-0">
-                {/* YOUR CUSTOM TOGGLE */}
+                {/* DARK MODE TOGGLE */}
                 <div className="toggle-wrapper">
                   <input
                     className="toggle-checkbox"
@@ -78,47 +75,48 @@ export default function RootLayout({ children }: { children: React.ReactNode }){
                   </div>
                 </div>
 
-                <div className="flex flex-wrap justify-center">
-                 <a
-                   href="mailto:anshdadhichmm@gamil.com"
-                   className="group flex items-center px-3 py-2.5
-                            rounded-xl
-                            border-2 border-transparent
-                            hover:border-black dark:hover:border-white 
-                            transition-colors duration-200"
-                 >
-                   <Mail
-                     size={18}
-                     className="text-neutral-700 dark:text-neutral-300 group-hover:text-black dark:group-hover:text-white border-white transition-colors"
-                   />
-                 </a>
-                 <a
-                   href="https://x.com"
-                   target="_blank"
-                   className="group flex items-center px-3 py-2.5
-                            rounded-xl
-                            border-2 border-transparent
-                            hover:border-black 
-                            transition-colors duration-200"
-                 >
-                   <svg
-                     xmlns="http://www.w3.org/2000/svg"
-                     width="20"
-                     height="20"
-                     viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     strokeWidth="2"
-                     strokeLinecap="round"
-                     strokeLinejoin="round"
-                     className="text-neutral-700 dark:text-neutral-300 group-hover:text-black dark:group-hover:text-white border-white transition-colors"
-                   >
-                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                     <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-                     <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
-                   </svg>
-                 </a>
-               </div>       
+                <div className="flex flex-wrap justify-center gap-2">
+                  <a
+                    href="mailto:anshdadhichmm@gamil.com"
+                    className="group flex items-center px-3 py-2.5
+                               rounded-xl
+                               border-2 border-transparent
+                               hover:border-black dark:hover:border-white 
+                               transition-colors duration-200"
+                  >
+                    <Mail
+                      size={18}
+                      className="text-neutral-700 dark:text-neutral-300 group-hover:text-black dark:group-hover:text-white transition-colors"
+                    />
+                  </a>
+
+                  <a
+                    href="https://x.com"
+                    target="_blank"
+                    className="group flex items-center px-3 py-2.5
+                               rounded-xl
+                               border-2 border-transparent
+                               hover:border-black 
+                               transition-colors duration-200"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="text-neutral-700 dark:text-neutral-300 group-hover:text-black dark:group-hover:text-white transition-colors"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+                      <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+                    </svg>
+                  </a>
+                </div>       
               </div>
             </div>
           </div>
